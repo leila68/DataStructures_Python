@@ -14,6 +14,7 @@ class SinglyLinkedList:
 
         if self.head is None:
             self.head = new_node
+            self.size += 1
         else:
             current = self.head
             while current.next:
@@ -26,6 +27,25 @@ class SinglyLinkedList:
         new_node.next = self.head
         self.head = new_node
         self.size += 1
+
+    def append_at_position(self, data, position):
+        current = self.head
+        new_node = Node(data)
+        prev = current
+        curr_pos = 0
+        if position > self.size:
+            # print(f"Attempted to insert at position {position}, but it's invalid.")
+            raise IndexError("Invalid position")
+        while current:
+            if curr_pos == position:
+                new_node.next = current
+                prev.next = new_node
+                self.size += 1
+                return True
+            prev = current
+            current = current.next
+            curr_pos += 1
+        return False
 
     def search(self, data):
         current = self.head
@@ -75,8 +95,18 @@ if __name__ == "__main__":
     ll.append(40)
     ll.append(50)
     ll.display()
-    print(ll.search(20))
-    print(ll.delete(50))
+    # print(ll.search(20))
+    # print(ll.delete(50))
+    ll.append(60)
     ll.display()
+    print(ll.size)
+    ll.pre_append(100)
+    ll.display()
+    print(ll.size)
+    ll.append_at_position(70,3)
+    ll.display()
+    ll.append_at_position(80, 12)
+    ll.display()
+    print(ll.size)
 
 
