@@ -6,7 +6,7 @@ This repository contains various implementations of data structures, as outlined
 - [ ] Stack
 - [ ] Queue
 - [x] Singly Linked List
-- [ ] Doubly Linked List
+- [x] Doubly Linked List
 - [x] Binary Tree
 - [x] Hash Table
 - [ ] Graph
