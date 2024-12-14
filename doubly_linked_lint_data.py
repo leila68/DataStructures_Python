@@ -59,35 +59,67 @@ class DoublyLinkedList:
         return False
 
     def search(self, data):
-        pass
+        if self.head is None:
+            return
+        current = self.head
+        pos = 1
+        while current:
+            if current.data == data:
+                return pos
+            current = current.next
+            pos += 1
 
     def delete(self, data):
-        pass
+        current = self.head
+        # if the del node is head
+        if current.data == data:
+            if current.next:
+                current.next.prev = None
+            self.head = current.next
+            self.size -= 1
+            return True
+        while current:
+            if current.data == data:
+                if current.next:
+                    # The prev pointer of the next node
+                    current.next.prev = current.prev
+                if current.prev:
+                    # The next pointer of previous point
+                    current.prev.next = current.next
+                self.size -= 1
+                return True
+            current = current.next
 
     def is_empty(self):
         return self.head is None
 
-    def display(self):
+    def print_forward(self):
         current = self.head
         while current:
             print(current.data, end=" -> ")
             current = current.next
         print('\n')
 
+    def print_backward(self):
+        pass
+
 
 if __name__ == "__main__":
     dll = DoublyLinkedList()
     dll.insert_at_beginning(10)
-    # dll.insert_at_beginning(11)
-    dll.display()
+    dll.insert_at_beginning(11)
     dll.insert_at_end(20)
     dll.insert_at_end(30)
     dll.insert_at_end(40)
     dll.insert_at_end(50)
-    dll.display()
     dll.insert_at_position(44, 4)
-    dll.display()
+    dll.print_forward()
     print(dll.size)
+    # print(dll.search(40))
+    print("delete", dll.delete(50))
+    dll.print_forward()
+    print(dll.size)
+
 
 
 
