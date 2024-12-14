@@ -98,10 +98,17 @@ class DoublyLinkedList:
         while current:
             print(current.data, end=" -> ")
             current = current.next
-        print('\n')
+        print('None \n')
 
     def print_backward(self):
-        pass
+        current = self.head
+        data = []
+        while current.next:
+            current = current.next
+        while current:
+            print(current.data, end=" -> ")
+            current = current.prev
+        print('None \n')
 
 
 if __name__ == "__main__":
@@ -116,8 +123,9 @@ if __name__ == "__main__":
     dll.print_forward()
     print(dll.size)
     # print(dll.search(40))
-    print("delete", dll.delete(50))
+    print("delete", dll.delete(11))
     dll.print_forward()
+    dll.print_backward()
     print(dll.size)
 
 
