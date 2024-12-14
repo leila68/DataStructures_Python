@@ -9,6 +9,13 @@ class Node:
         self.right = None
 
 
+def min_node(node):
+    current = node
+    while current.left is not None:
+        current = current.left
+    return current
+
+
 class BinaryTree:
     def __init__(self):
         self.root = None
@@ -43,12 +50,6 @@ class BinaryTree:
                 current = current.right
         return None
 
-    def min_node(self, node):
-        current = node
-        while current.left is not None:
-            current = current.left
-        return current
-
     def delete(self, data):
         current = self.root
         parent = None
@@ -75,9 +76,9 @@ class BinaryTree:
 
         # delete when node has two child
         elif current.right and current.left:
-            successor = self.min_node(current.right)
+            successor = min_node(current.right)
             val = successor.data
-            self.delete( successor.data)
+            self.delete(successor.data)
             current.data = val
 
         # delete when node hase one child
@@ -113,7 +114,8 @@ if __name__ == "__main__":
     bt.insert(25)
     bt.insert(8)
     bt.insert(16)
+    bt.insert(30)
     print(bt.inorder())
     print(bt.search(18))
-    bt.delete(16)
+    bt.delete(25)
     print(bt.inorder())
