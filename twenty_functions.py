@@ -49,6 +49,95 @@ def pyramid_pattern(N: int):
     return "Pattern Completed" # to avoid print None
 
 
+# 16
+def reverse_list(data: list):
+    start = 0
+    end = len(data) - 1
+    while start < end:
+        data[start], data[end] = data[end], data[start]
+        start += 1
+        end -= 1
+    return data
+
+
+# 17
+def find_repeated_data(data: list):
+    counter_data = {}
+    repeated_data = []
+
+    for item in data:
+        if item in counter_data:
+            counter_data[item] += 1
+        else:
+            counter_data[item] = 1
+
+    for k, v in counter_data.items():
+        if v > 1:
+            repeated_data.append(k)
+
+    print(counter_data)
+    print(repeated_data)
+
+
+# 18
+def find_repeated_data_with_set(data: list):
+    seen = set()
+    repeated = set()
+
+    for item in data:
+        if item in seen:
+            repeated.add(item)
+        else:
+            seen.add(item)
+
+    print(seen)
+    print(repeated)
+
+
+# 19
+def find_repeated_words(data: str, my_word: str):
+    counter = 0
+    # splits the string into a list of words
+    words = data.lower().split()
+    my_word = my_word.lower()
+    for word in words:
+        if word == my_word:
+            counter += 1
+
+    print(f'{my_word} is repeated {counter} times in this text')
+
+
+# 20
+def sort_asc_desc(data: list):
+    size = len(data)
+    start = 0
+    end = size // 2
+
+    def sort_asc(start, end):
+        for i in range(start, end):
+            for j in range(i, end):
+                if data[i] > data[j]:
+                    temp = data[i]
+                    data[i] = data[j]
+                    data[j] = temp
+
+    sort_asc(start, end)
+    print(data)
+
+    def sort_desc(start, end):
+        for i in range(start, end):
+            for j in range(i, end):
+                if data[i] < data[j]:
+                    temp = data[i]
+                    data[i] = data[j]
+                    data[j] = temp
+
+    start = size // 2
+    end = size
+    sort_desc(start, end)
+    print(data)
+
+
 if __name__ == '__main__':
 
     # reversed_number = reverse_number(1234)
@@ -57,4 +146,11 @@ if __name__ == '__main__':
     # is_palindrome(123421)
     # print(find_gcd(98, 56))
     # print(find_lcd(12, 9))
-    print(pyramid_pattern(5))
+    # print(pyramid_pattern(5))
+    # print(reverse_list([1,2,3,4,5,6,7]))
+    # find_repeated_data([11,1,2,2,3,1,7,7,7,8,2,9])
+    # find_repeated_data_with_set([11, 1, 2, 2, 3, 1, 7, 7, 7, 8, 2, 9])
+    # find_repeated_data(['leila', 'lili', 'didi', 'lili', 'miki', 'miki', 'hali'])
+    # find_repeated_words('I am here for you not for him please you You am here listen', 'you')
+
+    print(sort_asc_desc([50, 10, 70, 20, 30, 90, 112]))
