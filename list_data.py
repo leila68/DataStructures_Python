@@ -60,12 +60,22 @@ class ListData:
 
         return order_min_val, order_max_val
 
-    def find_duplicates(self):
-        duplicates = []
-        for i in self.data:
-            for j in self.data:
-                if self.data[i] == self.data[j]:
-                    duplicates.append(self.data[i])
+    def find_duplicates(self,):
+        counter_data = {}
+        repeated_data = []
+
+        for item in self.data:
+            if item in counter_data:
+                counter_data[item] += 1
+            else:
+                counter_data[item] = 1
+
+        for k, v in counter_data.items():
+            if v > 1:
+                repeated_data.append(k)
+
+        print(counter_data)
+        print(repeated_data)
 
 
 if __name__ == '__main__':
@@ -75,6 +85,7 @@ if __name__ == '__main__':
     obj.add_items(35)
     obj.add_items(25)
     obj.add_items(65)
+    obj.add_items(5)
     obj.add_items(5)
 
     min, max = obj.find_first_min_max()
@@ -88,3 +99,5 @@ if __name__ == '__main__':
 
     min3, max3 = obj.find_min_max(min2, max2)
     print(min3, max3)
+
+    obj.find_duplicates()
