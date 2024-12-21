@@ -137,6 +137,19 @@ def sort_asc_desc(data: list):
     sort_desc(start, end)
     print(data)
 
+# 20_1
+def asc_desc_sort(data: list):
+    mid = len(data) // 2
+    first_half = data[:mid]
+    second_half = data[mid:]
+
+    first_half.sort()
+    second_half.sort(reverse=True)
+
+    combine = first_half + second_half
+
+    print(combine)
+
 
 if __name__ == '__main__':
 
@@ -154,3 +167,5 @@ if __name__ == '__main__':
     # find_repeated_words('I am here for you not for him please you You am here listen', 'you')
 
     print(sort_asc_desc([50, 10, 70, 20, 30, 90, 112]))
+    print('************')
+    asc_desc_sort([50, 10, 70, 20, 30, 90, 112])
