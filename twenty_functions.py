@@ -137,6 +137,7 @@ def sort_asc_desc(data: list):
     sort_desc(start, end)
     print(data)
 
+
 # 20_1
 def asc_desc_sort(data: list):
     mid = len(data) // 2
@@ -146,9 +147,10 @@ def asc_desc_sort(data: list):
     first_half.sort()
     second_half.sort(reverse=True)
 
-    combine = first_half + second_half
+    # combine = first_half + second_half
+    first_half.extend(second_half)
 
-    print(combine)
+    print(first_half)
 
 
 if __name__ == '__main__':
