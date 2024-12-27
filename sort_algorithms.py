@@ -1,3 +1,4 @@
+
 class Search:
     def __init__(self, data):
         self.data = data
@@ -48,21 +49,67 @@ class Search:
             self.data[j+1] = key
         return self.data
 
-    def merge_sort(self):
-        pass
-
     def quick_sort(self):
-        pass
+        self.data = self._quick_sort_recursive(self.data)
+
+    def _quick_sort_recursive(self, arr):
+        if len(arr) <= 1:
+            print('arr:', arr)
+            return arr
+
+        pivot = arr[-1]
+        left = [x for x in arr[:-1] if x <= pivot]
+        right = [x for x in arr[:-1] if x > pivot]
+
+        print('com', self._quick_sort_recursive(left) + [pivot] + self._quick_sort_recursive(right))
+        return self._quick_sort_recursive(left) + [pivot] + self._quick_sort_recursive(right)
+
+    def merge_sort(self):
+        self.data = self._merge_sort_recursive(self.data)
+
+    def _merge_sort_recursive(self, arr):
+        if len(arr) <= 1:
+            return arr
+
+        mid = len(arr) // 2
+        left_half = self._merge_sort_recursive(arr[:mid])
+        right_half = self._merge_sort_recursive(arr[mid:])
+
+        return self._merge(left_half, right_half)
+
+    def _merge(self, left, right):
+        merged = []
+        i = j = 0
+
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                merged.append(left[i])
+                i += 1
+            else:
+                merged.append(right[j])
+                j += 1
+
+        merged.extend(left[i:])
+        merged.extend(right[j:])
+
+        return merged
 
 
 if __name__ == '__main__':
     # data = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-    data = [100, 60, 40, 70, 50, 20, 80, 90, 10]
+    data = [100, 60, 40, 70, 50, 20]
+    print(data)
     sr = Search(data)
     # print(sr.bubble_sort())
-    # print(sr.binary_search(90))
+    # print(sr.binary_search(90)
     # print(sr.selection_sort())
-    print(sr.insertion_sort())
+    # print(sr.insertion_sort())
+
+    sr.quick_sort()
+    print("quick sorted Data:", sr.data)
+
+    # sr.merge_sort()
+    # print("merge sorted Data:", sr.data)
 
 
 
