@@ -1,21 +1,8 @@
 
-class Search:
+class Sort:
     def __init__(self, data):
         self.data = data
         self.size = len(self.data)
-
-    def binary_search(self, val):
-        left, right = 0, self.size - 1
-
-        while left <= right:
-            mid = (left + right) // 2
-            if val == data[mid]:
-                return data[mid]
-            if val < data[mid]:
-                right = mid - 1
-            if val > data[mid]:
-                left = mid + 1
-        return 0
 
     def bubble_sort(self):
         # time complexity: O(n^2)
@@ -99,16 +86,15 @@ if __name__ == '__main__':
     # data = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     data = [100, 60, 40, 70, 50, 20]
     print(data)
-    sr = Search(data)
-    # print(sr.bubble_sort())
-    # print(sr.binary_search(90)
-    # print(sr.selection_sort())
-    # print(sr.insertion_sort())
+    so = Sort(data)
+    # print(so.bubble_sort())
+    # print(so.selection_sort())
+    # print(so.insertion_sort())
 
-    sr.quick_sort()
-    print("quick sorted Data:", sr.data)
+    # so.quick_sort()
+    # print("quick sorted Data:", sr.data)
 
-    # sr.merge_sort()
+    # so.merge_sort()
     # print("merge sorted Data:", sr.data)
 
 

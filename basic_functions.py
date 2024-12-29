@@ -34,11 +34,21 @@ def is_prime(num: int) -> bool:
 
 
 def count_vowels(s: str) -> int:
-    pass
+    vowels = "aeiouAEIOU"
+    counter = 0
+    for c in s:
+        if c in vowels:
+            counter += 1
+
+    return counter
 
 
 def replace_vowels(s: str) -> str:
-    pass
+    vowels = "aeiouAEIOU"
+    for c in s:
+        if c in vowels:
+            s = s.replace(c, '*')
+    return s
 
 
 def missing_number(arr: list, N: int) -> int:
@@ -74,7 +84,10 @@ def second_largest(numbers: list) -> int:
 
 
 def factorial(n: int) -> int:
-    pass
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n-1)
 
 
 def find_duplicates(numbers: list) -> list:
@@ -90,7 +103,7 @@ def is_power_of_two(num: int) -> bool:
 
 
 if __name__ == '__main__':
-    print(is_palindrome("racecar"))  # Output: True
+    # print(is_palindrome("racecar"))  # Output: True
     # print(is_palindrome("raccar"))  # Output: False
     # print(find_largest([1, 3, 7, 2, 5, 11, 0]))  # Output: 7
     # print(is_prime(74))
@@ -103,7 +116,7 @@ if __name__ == '__main__':
     # print(count_words("This is a simple sentence is num again."))
     # print(second_largest([10, 20, 4, 45, 99, 20, 100]))
     # print(reverse_words("Hello World leila"))  # Output: "World Hello"
-    # print(factorial(5))
+    print(factorial(7))
     # print(find_duplicates([1, 2, 3, 4, 2, 3, 5]))  # Output: [2, 3]
     #
     # print(is_perfect_number(6))  # Output: True (6 = 1 + 2 + 3)
