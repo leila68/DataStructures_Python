@@ -81,7 +81,7 @@ class BinaryTree:
             self.delete(successor.data)
             current.data = val
 
-        # delete when node hase one child
+        # delete when node has one child
         else:
             if current.left is not None:
                 child = current.left

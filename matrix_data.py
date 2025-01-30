@@ -1,3 +1,6 @@
+import random
+import numpy as np
+
 class Matrix:
     def __init__(self, mtx):
         self.mtx = mtx
@@ -47,15 +50,20 @@ if __name__ == '__main__':
         [9, 10, 11, 12]
     ]
 
-    mt = Matrix(matrix)
-    print("Matrix Dimensions:", mt.matrix_dim())
-    print("Original Matrix:")
-    mt.display()
+    # mt = Matrix(matrix)
+    # print("Matrix Dimensions:", mt.matrix_dim())
+    # print("Original Matrix:")
+    # mt.display()
 
     # print("Transposed Matrix:")
     # transposed = mt.matrix_transpose()
     # print("Matrix Dimensions:", mt.matrix_dim(transposed))
     # mt.display(transposed)
 
-    rotate_mtx = mt.matrix_rotate()
-    mt.display(rotate_mtx)
+    # rotate_mtx = mt.matrix_rotate()
+    # mt.display(rotate_mtx)
+
+
+
+
+

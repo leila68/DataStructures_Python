@@ -77,6 +77,18 @@ class ListData:
         print(counter_data)
         print(repeated_data)
 
+    def find_second_highest(self):
+        highest = float('-inf')
+        second_highest = float('-inf')
+        for i in range(len(self.data)):
+            if self.data[i] > highest:
+                second_highest = highest
+                highest = self.data[i]
+            elif self.data[i] > second_highest:
+                second_highest = self.data[i]
+
+        return second_highest
+
 
 if __name__ == '__main__':
 
@@ -86,18 +98,19 @@ if __name__ == '__main__':
     obj.add_items(25)
     obj.add_items(65)
     obj.add_items(5)
-    obj.add_items(5)
+    obj.add_items(160)
 
-    min, max = obj.find_first_min_max()
-    print(min, max)
-
+    # min, max = obj.find_first_min_max()
+    # print(min, max)
+    #
     # min, max = obj.find_second_min_max()
     # print(min, max)
+    #
+    # min2, max2 = obj.find_min_max(min, max)
+    # print(min2, max2)
+    #
+    # min3, max3 = obj.find_min_max(min2, max2)
+    # print(min3, max3)
 
-    min2, max2 = obj.find_min_max(min, max)
-    print(min2, max2)
-
-    min3, max3 = obj.find_min_max(min2, max2)
-    print(min3, max3)
-
-    obj.find_duplicates()
+    # obj.find_duplicates()
+    print(obj.find_second_highest())

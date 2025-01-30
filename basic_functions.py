@@ -1,3 +1,4 @@
+import math
 import string
 
 
@@ -30,7 +31,12 @@ def find_min_max(arr: list):
 
 
 def is_prime(num: int) -> bool:
-    pass
+    if num < 2:
+        return False
+    for i in range(2, int(math.sqrt(num))+1):
+        if num % i == 0:
+            return False
+    return True
 
 
 def count_vowels(s: str) -> int:
@@ -59,16 +65,35 @@ def sum_list(arr: list) -> int:
     pass
 
 
-def fibonacci(n: int) -> list:
-    pass
+def fibonacci_recursive(n: int) -> int:
+    if n <= 1:
+        return n
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
 
 
-def fibonacci_gen(n: int):
-    pass
+def fibonacci(n: int):
+    fibo = [0, 1]
+
+    for i in range(1, n):
+        fibo.append(fibo[i-1] + fibo[i])
+    # fibo.pop(0)
+    return fibo
+
+
+def fibonacci_iterative(n: int) -> int:
+    if n <= 1:
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
 
 
 def is_anagram(str1: str, str2: str) -> bool:
-    pass
+    if sorted(str1) == sorted(str2):
+        return True
+    else:
+        return False
 
 
 def count_words(sentence: str) -> int:
@@ -111,12 +136,13 @@ if __name__ == '__main__':
     # print(replace_vowels('leila cheshmi'))
     # print(missing_number([1, 2, 4, 5, 6, 7, 8, 9, 10], 10))
     # print(sum_list([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-    # print(fibonacci(10))
+    print(fibonacci(10))
+    # print(fibonacci_iterative(10))
     # print(is_anagram('sima', 'misa'))
     # print(count_words("This is a simple sentence is num again."))
     # print(second_largest([10, 20, 4, 45, 99, 20, 100]))
     # print(reverse_words("Hello World leila"))  # Output: "World Hello"
-    print(factorial(7))
+    # print(factorial(7))
     # print(find_duplicates([1, 2, 3, 4, 2, 3, 5]))  # Output: [2, 3]
     #
     # print(is_perfect_number(6))  # Output: True (6 = 1 + 2 + 3)

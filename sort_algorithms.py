@@ -37,6 +37,7 @@ class Sort:
         return self.data
 
     def quick_sort(self):
+        # Time Complexity: O(n log n) on average, O(n²) in the worst case.
         self.data = self._quick_sort_recursive(self.data)
 
     def _quick_sort_recursive(self, arr):
@@ -52,6 +53,7 @@ class Sort:
         return self._quick_sort_recursive(left) + [pivot] + self._quick_sort_recursive(right)
 
     def merge_sort(self):
+        # n log(n)
         self.data = self._merge_sort_recursive(self.data)
 
     def _merge_sort_recursive(self, arr):

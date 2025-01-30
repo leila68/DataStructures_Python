@@ -1,4 +1,5 @@
 class Node:
+    """Node for the linked list used in each bucket of the hash table."""
     def __init__(self, key, value):
         self.key = key
         self.value = value
@@ -6,15 +7,17 @@ class Node:
 
 
 class HashTable:
-    def __init__(self, capacity):
-        self.capacity = capacity
+    """Hash table implementation with separate chaining using linked lists."""
+    def __init__(self, table_size=10):
+        self.table = [None] * table_size
         self.size = 0
-        self.table = [None] * capacity
 
     def _hash(self, key):
-        return hash(key) % self.capacity
+        """Generate a hash index for the given key."""
+        return hash(key) % len(self.table)
 
     def insert(self, key, value):
+        """Insert or update a key-value pair in the hash table."""
         index = self._hash(key)
         if self.table[index] is None:
             self.table[index] = Node(key, value)
@@ -24,63 +27,68 @@ class HashTable:
             while current:
                 if current.key == key:
                     current.value = value
-                    return current
+                    return
+                if current.next is None:
+                    break
                 current = current.next
-            new_node = Node(key, value)
-            new_node.next = self.table[index]
-            self.table[index] = new_node
+            current.next = Node(key, value)
             self.size += 1
 
-    def search(self, key):
+    def get(self, key):
+        """Retrieve a value by its key."""
         index = self._hash(key)
-        if self.table[index] is None:
-            raise KeyError(key)
-        else:
-            current = self.table[index]
-            while current:
-                if current.key == key:
-                    return current.value
-                current = current.next
-        raise KeyError(key)
-
-    def remove(self, key):
-        index = self._hash(key)
-        if self.table[index] is None:
-            raise KeyError(key)
-        else:
-            current = self.table[index]
-            previous = None
-            while current:
-                previous = current
-                if current.key == key:
-                    if previous:
-                        previous.next = current.next
-                else:
-                    self.table[index] = current.next
-                    self.size -= 1
-                    return
-                previous = current
-                current = current.next
-        raise KeyError(key)
-
-    def print(self):
-        element = []
-        for i in range(self.capacity):
-            current = self.table[i]
-            element.append(current.key, current.value)
+        current = self.table[index]
+        while current:
+            if current.key == key:
+                return current.value
             current = current.next
-        return element
+        return None
+
+    def delete(self, key):
+        """Remove a key-value pair from the hash table."""
+        index = self._hash(key)
+        current = self.table[index]
+        prev = None
+        while current:
+            if current.key == key:
+                if prev is None:
+                    self.table[index] = current.next
+                else:
+                    prev.next = current.next
+                self.size -= 1
+                return True
+            prev = current
+            current = current.next
+        return False
+
+    def print_table(self):
+        """Print the hash table contents."""
+        for i, node in enumerate(self.table):
+            print(f"Bucket {i}:", end=" ")
+            current = node
+            if not current:
+                print("Empty")
+            else:
+                while current:
+                    print(f"({current.key}, {current.value})", end=" -> ")
+                    current = current.next
+                print("None")
 
 
-if __name__ == '__main__':
-    ht = HashTable(10)
-    print(ht.size)
+# Example usage
+if __name__ == "__main__":
+    ht = HashTable(5)
+    ht.insert(1, "A")
+    ht.insert(6, "B")
+    ht.insert(11, "C")
+    ht.insert(3, "D")
 
+    print("Initial Hash Table:")
+    ht.print_table()
 
+    print("\nRetrieve key 6:", ht.get(6))  # Output: B
+    print("Retrieve key 10:", ht.get(10))  # Output: None
 
-
-
-
-
-
-
+    # ht.delete(6)
+    print("\nHash Table after deleting key 6:")
+    ht.print_table()
